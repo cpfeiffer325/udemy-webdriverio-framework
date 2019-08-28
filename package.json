@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    
+    "selenium-standalone": "^6.15.3",
+    "webdriverio": "^4.13.2"
   }
 }
