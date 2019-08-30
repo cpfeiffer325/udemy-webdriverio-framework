@@ -1,6 +1,3 @@
-let expect = require('chai').expect;
-let should = require('chai').should();
-
 describe("Verify whether webdriveruniversity links on homepage work correctly", function() {
 	it("check that the contact us button opens the contact us page", function(done) {
 		browser.setViewportSize({
