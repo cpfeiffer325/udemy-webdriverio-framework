@@ -1,10 +1,12 @@
 let baseUrl;
 
 if(process.env.SERVER === 'prod') {
-        baseUrl = 'https://www.google.com';
+    baseUrl = 'https://www.google.com';
 } else {
     baseUrl = 'http://www.webdriveruniversity.com';
 }
+
+let timeout = process.env.DEBUG ? 99999999 : 10000;
 
 exports.config = {
     
@@ -136,7 +138,8 @@ exports.config = {
     // Options to be passed to Mocha.
     // See the full list at http://mochajs.org/
     mochaOpts: {
-        ui: 'bdd'
+        ui: 'bdd',
+        timeout: timeout
     },
     //
     // =====
