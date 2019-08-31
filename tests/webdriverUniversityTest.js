@@ -9,16 +9,22 @@ describe("Verify whether webdriveruniversity links on homepage work correctly", 
 		expect(title).to.equal('WebDriverUniversity.com');
 		console.log('Title is: ' + title);
 		browser.debug();
+
 		browser.click("#contact-us");
+		let tabIds = browser.getTabIds();
+		console.log(tabIds);
+		browser.switchTab(tabIds[1]);
 		browser.pause(3000);
+		browser.close();
 	});
 
 	it("check that the login button opens the login portal page", function(done) {
 		browser.url('/'); // base url
-		browser.click('#login-portal');
 		let title = browser.getTitle();
 		title.should.equal('WebDriverUniversity.com');
 		console.log('Title is: ' + title);
+
+		browser.click('#login-portal');
 		browser.pause(3000);
 	});
 });
