@@ -25,6 +25,8 @@ describe("Verify whether webdriveruniversity links on homepage work correctly", 
 		console.log('Title is: ' + title);
 
 		browser.click('#login-portal');
+		let tabIds = browser.getTabIds();
+		browser.switchTab(tabIds[1]);
 		browser.pause(3000);
 	});
 });
