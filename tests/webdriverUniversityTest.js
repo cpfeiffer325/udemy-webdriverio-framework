@@ -8,13 +8,17 @@ describe("Verify whether webdriveruniversity links on homepage work correctly", 
 		let title = browser.getTitle();
 		expect(title).to.equal('WebDriverUniversity.com');
 		console.log('Title is: ' + title);
-		browser.debug();
 
 		browser.click("#contact-us");
 		let tabIds = browser.getTabIds();
 		console.log(tabIds);
 		browser.switchTab(tabIds[1]);
-		browser.pause(3000);
+
+		let title2 = browser.getTitle();
+		expect(title2).to.equal('WebDriver | Contact Us');
+
+		let url = browser.getUrl();
+		expect(url).to.include('Contact-Us', 'URL mismatch');
 		browser.close();
 	});
 
@@ -27,6 +31,11 @@ describe("Verify whether webdriveruniversity links on homepage work correctly", 
 		browser.click('#login-portal');
 		let tabIds = browser.getTabIds();
 		browser.switchTab(tabIds[1]);
-		browser.pause(3000);
+
+		let title3 = browser.getTitle();
+		expect(title3).to.equal('WebDriver | Login Portal');
+
+		let url = browser.getUrl();
+		expect(url).to.include('Login-Portal', 'URL mismatch');
 	});
 });
