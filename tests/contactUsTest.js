@@ -14,6 +14,8 @@ describe('Test Contact Us form WebdriverUni', function() {
     browser.setValue("[name='email']", 'joe_blogs@mail.com');
     browser.setValue("[name='message']", 'When can I get the product delivered');
     browser.click("[type='submit']");
+
+    #contact_reply h1
   });
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
@@ -21,6 +23,8 @@ describe('Test Contact Us form WebdriverUni', function() {
     browser.setValue("[name='last_name']", 'Woods');
     browser.setValue("[name='email']", 'mike_woods@mail.com');
     browser.click("[type='submit']");
+
+    body
   });
 
   
@@ -28,11 +32,15 @@ describe('Test Contact Us form WebdriverUni', function() {
     browser.setValue("[name='first_name']", 'Sarah');
     browser.setValue("[name='email']", 'sarah_woods@mail.com');
     browser.click("[type='submit']");
+
+    body
   });
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
     browser.setValue("[name='first_name']", 'Jimmy');
     browser.setValue("[name='last_name']", 'John');
     browser.click("[type='submit']");
+
+    body
   });
 });
