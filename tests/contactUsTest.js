@@ -1,8 +1,14 @@
+let request = require('sync-request');
+
 beforeEach(function() {
 	browser.url('/Contact-Us/contactus.html');
 })
 
 describe('Test Contact Us form WebdriverUni', function() {
+  let res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
+
+  let contactusDetails = JSON.parse(res.getBody().toString('utf8'));
+  
   beforeEach(function() {
     browser.url('/Contact-Us/contactus.html');
     console.log('we are inside the describe function');
