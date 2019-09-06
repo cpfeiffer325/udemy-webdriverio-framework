@@ -9,20 +9,29 @@ describe('Test whether specific elements are visible within viewport', function(
 				width: 1200,
 				height: 800
 			})
-			browser.pause(2000);
+      browser.pause(2000);
+      
+      let windowSize = browser.windowHandleSize();
+      console.log(windowSize.value);
 		});
 
 	it('should detect if an element is visible', function () {
-    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#not-displayed");
+    var isVisibleWithinViewport = browser.isVisibleWithinViewport("#not-displayed");
     console.log(isVisibleWithinViewport); // false
 
-    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#visibility-hidden");
+    var isVisibleWithinViewport = browser.isVisibleWithinViewport("#visibility-hidden");
     console.log(isVisibleWithinViewport); // false
 
-    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#zero-opacity");
+    var isVisibleWithinViewport = browser.isVisibleWithinViewport("#zero-opacity");
     console.log(isVisibleWithinViewport); // false
 
-    let isVisibleWithinViewport = browser.isVisibleWithinViewport("h1");
+    var isVisibleWithinViewport = browser.isVisibleWithinViewport("h1");
     console.log(isVisibleWithinViewport); // true
+
+    let width = browser.getViewportSize("width");
+    console.log(width); // 1200
+    
+    let height = browser.getViewportSize("height");
+    console.log(height); // 800
 	});
 });
