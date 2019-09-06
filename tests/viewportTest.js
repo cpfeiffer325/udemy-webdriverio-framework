@@ -13,6 +13,16 @@ describe('Test whether specific elements are visible within viewport', function(
 		});
 
 	it('should detect if an element is visible', function () {
-    
+    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#not-displayed");
+    console.log(isVisibleWithinViewport); // false
+
+    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#visibility-hidden");
+    console.log(isVisibleWithinViewport); // false
+
+    let isVisibleWithinViewport = browser.isVisibleWithinViewport("#zero-opacity");
+    console.log(isVisibleWithinViewport); // false
+
+    let isVisibleWithinViewport = browser.isVisibleWithinViewport("h1");
+    console.log(isVisibleWithinViewport); // true
 	});
 });
