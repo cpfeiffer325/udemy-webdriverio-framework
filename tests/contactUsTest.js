@@ -10,15 +10,15 @@ describe('Test Contact Us form WebdriverUni', function() {
   let contactusDetails = JSON.parse(res.getBody().toString('utf8'));
   
   beforeEach(function() {
-    browser.url('/Contact-Us/contactus.html');
     console.log('we are inside the describe function');
   })
 
+contactusDetails.forEach(function (contactDetail) {
   it('Should be able to submit a successful submission via contact us form', function(done) {
     browser.setValue("[name='first_name']", 'Joe');
     browser.setValue("[name='last_name']", 'Blogs');
-    browser.setValue("[name='email']", 'joe_blogs@mail.com');
-    browser.setValue("[name='message']", 'When can I get the product delivered');
+    browser.setValue("[name='email']", contactDetail.email);
+    browser.setValue("[name='message']", contactDetail.body);
     browser.click("[type='submit']");
 
     let successfulContactConfirmation = browser.isExisting('#contact_reply h1');
@@ -26,6 +26,7 @@ describe('Test Contact Us form WebdriverUni', function() {
 
     let successfulSubmission = browser.getText('#contact_reply h1');
     expect(successfulSubmission).to.equal('Thank You for your Message!');
+    })
   });
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
