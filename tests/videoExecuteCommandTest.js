@@ -4,7 +4,13 @@ beforeEach(function() {
 
 //Injects a snippet of JavaScript into the page for execution in the context of the currently selected frame.
 browser.addCommand('isVideoPaused', function() {
+    let isPaused = browser.exectute(function() {
+        console.log('Outputted inside the console window');
 
+        let video = document.querySelector('#video1');
+        return video.paused;
+    })
+    return isPaused.value;
 });
 
 describe('Video test', function() {
