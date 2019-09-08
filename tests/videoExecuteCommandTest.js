@@ -22,6 +22,10 @@ describe('Video test', function() {
 	});
 
 	it('Alter the width of the video', function(done) {
-        
+        let videoWidth = browser.execute(function() {
+            let video = document.querySelector('#video1');
+            return video.style.width = "300px";
+        });
+        browser.pause(3000);
 	});
 }); 
