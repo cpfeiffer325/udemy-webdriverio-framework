@@ -15,10 +15,11 @@ browser.addCommand('isVideoPaused', function() {
 
 describe('Video test', function() {
 	it('Validate that the video is paused when accessing the page', function(done) {
-		this.timeout(20000);
+        this.timeout(20000);
+        browser.pause(6000);
 		let isPaused = browser.isVideoPaused();
 		expect(isPaused).to.be.true;
-		browser.pause(6000);
+		browser.pause(3000);
 	});
 
 	it('Alter the width of the video', function(done) {
@@ -26,6 +27,6 @@ describe('Video test', function() {
 			let video = document.querySelector('#video1');
 			return video.style.width = "300px";
 		});
-		browser.pause(6000);		
+		browser.pause(3000);		
 	});
 });
