@@ -14,8 +14,35 @@ describe('Test Contact Us form WebdriverUni', function() {
 	let commentsSelector = "[name='textarea']";
 	let successfulSubmissionSelector = "#contact_reply h1";
 	let unsuccessfulSubmissionSelector = "body";
-	let submitButtonSelector = "[type='submit']"
+	let submitButtonSelector = "[type='submit']";
+
+	function setFirstName(firstName) {
+		return browser.setValue(firstNameSelector, firstName);
+	}
+
+	function setLastName(lastName) {
+		return browser.setValue(lastNameSelector, lastName);
+	}
 	
+	function setEmail(email) {
+		return browser.setValue(emailSelector, email);
+	}
+
+	function setComments(comments) {
+		return browser.setValue(commentsSelector, comments);
+	}
+
+	function clickSubmitButton() {
+		return browser.click(submitButtonSelector);
+	}
+
+	function confirmSuccessfulSubmission() {
+		let validateSubmissionHeader = browser.waitUntil(function() {
+			return browser.getText('successfulSubmissionSelector') == 'Thank You for your Message!'
+		}, 3000)
+		expect(validateSubmissionHeader, 'Successful submission Message does not exist').to.be.true;
+	}
+
 contactusDetails.forEach(function (contactDetail) {
   it('Should be able to submit a successful submission via contact us form', function(done) {
   	browser.submitDataViaContactUsForm('joe', 'Blogs', contactDetail.email, contactDetail.body);
