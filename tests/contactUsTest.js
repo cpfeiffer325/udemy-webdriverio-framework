@@ -38,22 +38,26 @@ describe('Test Contact Us form WebdriverUni', function() {
 
 	function confirmSuccessfulSubmission() {
 		let validateSubmissionHeader = browser.waitUntil(function() {
-			return browser.getText('successfulSubmissionSelector') == 'Thank You for your Message!'
+			return browser.getText(successfulSubmissionSelector) == 'Thank You for your Message!'
 		}, 3000)
 		expect(validateSubmissionHeader, 'Successful submission Message does not exist').to.be.true;
 	}
 
+	function confirmUnsuccessfulSubmission() {
+		let validateSubmissionHeader = browser.waitUntil(function() {
+			return browser.getText(unsuccessfulSubmissionSelector) == 'Thank You for your Message!'
+		}, 3000)
+		expect(browser.getText(unsuccessfulSubmissionSelector)).to.include('Error: all fields are required');
+	}
+
 contactusDetails.forEach(function (contactDetail) {
   it('Should be able to submit a successful submission via contact us form', function(done) {
-  	browser.submitDataViaContactUsForm('joe', 'Blogs', contactDetail.email, contactDetail.body);
-
-  	let successfulContactConfirmation = browser.isExisting('#contact_reply h1');
-  	expect(successfulContactConfirmation, 'Successful submission Message does not exist').to.be.true;
-
-  	let successfulSubmission = browser.getText('#contact_reply h1');
-  	expect(successfulSubmission).to.equal('Thank You for your Message!');
-  		})
-    });
+	setFirstName('joe');
+	setLastName('blogs');
+	setEmail(contactDetail.email);
+	setComments(contactDetail.body);
+	confirmSuccessfulSubmission();
+	});
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
   	browser.setValue("[name='first_name']",'Mike');
