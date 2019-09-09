@@ -1,42 +1,29 @@
-var request = require('sync-request');
-
-browser.addCommand("submitDataViaContactUsForm", function (firstName, lastName, emailAddress, comments) {
-	if(firstName) {
-		browser.setValue("[name='first_name']", firstName);
-	}
-	if(lastName) {
-		browser.setValue("[name='last_name']", lastName);
-	}
-	if(emailAddress) {
-		browser.setValue("[name='email']", emailAddress);
-	}
-	if(comments) {
-		browser.setValue("[name='message']", comments);
-	}
-	browser.click("[type='submit']");	
-})
+let request = require('sync-request');
 
 beforeEach(function() {
 	browser.url('/Contact-Us/contactus.html');
 })
 
 describe('Test Contact Us form WebdriverUni', function() {
-	var res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
+	let res = request('GET', 'http://jsonplaceholder.typicode.com/posts/1/comments');
+	let contactusDetails = JSON.parse(res.getBody().toString('utf8'));
 
-	var contactusDetails = JSON.parse(res.getBody().toString('utf8'));
-
-	beforeEach(function() {
-		console.log('Inside the describe block!');
-	})
-
+	let firstNameSelector = "[name='first_name']";
+	let lastNameSelector = "[name='last_name']";
+	let emailSelector = "[name='email']";
+	let commentsSelector = "[name='textarea']";
+	let successfulSubmissionSelector = "#contact_reply h1";
+	let unsuccessfulSubmissionSelector = "body";
+	let submitButtonSelector = "[type='submit']"
+	
 contactusDetails.forEach(function (contactDetail) {
   it('Should be able to submit a successful submission via contact us form', function(done) {
   	browser.submitDataViaContactUsForm('joe', 'Blogs', contactDetail.email, contactDetail.body);
 
-  	var successfulContactConfirmation = browser.isExisting('#contact_reply h1');
+  	let successfulContactConfirmation = browser.isExisting('#contact_reply h1');
   	expect(successfulContactConfirmation, 'Successful submission Message does not exist').to.be.true;
 
-  	var successfulSubmission = browser.getText('#contact_reply h1');
+  	let successfulSubmission = browser.getText('#contact_reply h1');
   	expect(successfulSubmission).to.equal('Thank You for your Message!');
   		})
     });
@@ -47,7 +34,7 @@ contactusDetails.forEach(function (contactDetail) {
   	browser.setValue("[name='email']", 'mike_woods@mail.com');
   	browser.click("[type='submit']");
 
-  	var successfulContactConfirmation = browser.isExisting('#contact_reply h1');
+  	let successfulContactConfirmation = browser.isExisting('#contact_reply h1');
   	expect(successfulContactConfirmation, 'Successful submission Message does not exist').to.be.false;
     });
 
@@ -57,7 +44,7 @@ contactusDetails.forEach(function (contactDetail) {
   	browser.setValue("[name='email']", 'sarah_woods@mail.com');
   	browser.click("[type='submit']");
 
-	var successfulContactConfirmation = browser.isExisting('#contact_reply h1');
+	let successfulContactConfirmation = browser.isExisting('#contact_reply h1');
   	expect(successfulContactConfirmation, 'Successful submission Message does not exist').to.be.false;
     });
 
@@ -66,7 +53,7 @@ contactusDetails.forEach(function (contactDetail) {
   	browser.setValue("[name='last_name']",'Jomes');
   	browser.click("[type='submit']");
 
-  	var errorText = browser.getText('body');
+  	let errorText = browser.getText('body');
   	expect(errorText).to.include('Error: all fields are required');
 
   	errorText = browser.isVisible('body');
