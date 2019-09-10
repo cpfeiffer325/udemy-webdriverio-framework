@@ -25,7 +25,7 @@ exports.config = {
     // Patterns to exclude.
     exclude: [
         // 'path/to/excluded/files'
-        './pageObjects/*Page.js'
+        './pageObjects/*_Page.js'
     ],
     //
     // ============
