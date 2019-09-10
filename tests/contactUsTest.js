@@ -6,37 +6,37 @@ beforeEach(function() {
 
 describe('Test Contact Us form WebdriverUni', function() {
 	function setFirstName(firstName) {
-		return browser.setValue(firstNameSelector, firstName);
+		return contactUs_Page.firstName.setValue(firstName);
 	}
 
 	function setLastName(lastName) {
-		return browser.setValue(lastNameSelector, lastName);
+		return contactUs_Page.lastName.setValue(lastName);
 	}
 
 	function setEmailAddress(emailAddress) {
-		return browser.setValue(emailAddressSelector, emailAddress);
+		return contactUs_Page.emailAddress.setValue(emailAddress);
 	}
 
 	function setComments(comments) {
-		return browser.setValue(commentsSelector, comments);
+		return contactUs_Page.comments.setValue(comments);
 	}
 
 	function clickSubmitButton() {
-		return browser.click(submitButtonSelector);
+		return contactUs_Page.submitButton.click();
 	}
 
 	function confirmSuccessfulSubmission() {
 		var validateSubmissionHeader = browser.waitUntil(function() {
-			return browser.getText(successfulSubmissionSelector) == 'Thank You for your Message!'
+			return contactUs_Page.successfulSubmissionSelector.getText() == 'Thank You for your Message!'
 		}, 3000)
 		expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
 	}
 
 	function confirmUnsuccessfulSubmission() {
 		var validateSubmissionHeader = browser.waitUntil(function() {
-			return browser.getText(unsuccessfulSubmissionSelector) == 'Error: all fields are required'
+			return contactUs_Page.unsuccessfulSubmissionSelector.getText() == 'Error: all fields are required'
 		}, 3000)
-		expect(browser.getText(unsuccessfulSubmissionSelector)).to.include('Error: all fields are required');
+		expect(contactUs_Page.unsuccessfulSubmissionSelector.getText()).to.include('Error: all fields are required');
 	}
 
 
