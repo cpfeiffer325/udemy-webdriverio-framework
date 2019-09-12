@@ -1,12 +1,10 @@
-// store variables to be used for all tests
 class ContactUs_Page {
+	// store variables to be used for all tests
 	get firstName() { return $("[name='first_name']");}
 	get lastName() { return $("[name='last_name']");}
 	get comments() { return $("textarea");}
 	get emailAddress() { return $("[name='email']");}
 	get submitButton() { return $("[type='submit']");}
-	get successfulSubmissionHeader() { return $("#contact_reply h1");}
-	get unsuccessfulSubmissionHeader() { return $("body");}
 
 	//store functions for all our tests
 	setFirstName(firstName) {
@@ -47,17 +45,19 @@ class ContactUs_Page {
 	}
 
 	confirmSuccessfulSubmission() {
-		var validateSubmissionHeader = browser.waitUntil(function() {
-			return this.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
+		let successfulSubmissionHeader = "#contact_reply h1";
+		let validateSubmissionHeader = browser.waitUntil(function() {
+			return browser.getText(successfulSubmissionHeader) == 'Thank You for your Message!'
 		}, 3000)
 		expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
 	}
 
 	confirmUnsuccessfulSubmission() {
-		var validateSubmissionHeader = browser.waitUntil(function() {
-			return this.unsuccessfulSubmissionHeader.getText() == 'Error: all fields are required'
+		let unsuccessfulSubmissionHeader = "body";
+		let validateSubmissionHeader = browser.waitUntil(function() {
+			return browser.getText(unsuccessfulSubmissionHeader) == 'Error: all fields are required'
 		}, 3000)
-		expect(this.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
+		expect(browser.getText(unsuccessfulSubmissionHeader)).to.include('Error: all fields are required');
 	}
 }
 

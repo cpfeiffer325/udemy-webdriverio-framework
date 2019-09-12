@@ -9,7 +9,6 @@ describe('Test Contact Us form WebdriverUni', function() {
 	ContactUs_Page.submitAllInfoViaContactUSForm('joe', 'Blogs', 'joe_blogs123@outlook.com', 'this is a great day to learn coding')
 	});
 
-
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
   	ContactUs_Page.setFirstName('Mike');
   	ContactUs_Page.setLastName('Woods');
