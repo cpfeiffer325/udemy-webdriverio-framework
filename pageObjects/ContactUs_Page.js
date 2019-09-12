@@ -7,58 +7,58 @@ class ContactUs_Page {
 	get submitButton() { return $("[type='submit']");}
 	get successfulSubmissionHeader() { return $("#contact_reply h1");}
 	get unsuccessfulSubmissionHeader() { return $("body");}
-}
 
-//store functions for all our tests
-function setFirstName(firstName) {
-	return this.firstName.setValue(firstName);
-}
-
-function setLastName(lastName) {
-	return this.lastName.setValue(lastName);
-}
-
-function setEmailAddress(emailAddress) {
-	return this.emailAddress.setValue(emailAddress);
-}
-
-function setComments(comments) {
-	return this.comments.setValue(comments);
-}
-
-function clickSubmitButton() {
-	return this.submitButton.click();
-}
-
-function submitAllInfoViaContactUSForm(firstName, lastName, emailAddress, comments) {
-	if(firstName) {
-		this.firstName.setValue(firstName);
+	//store functions for all our tests
+	setFirstName(firstName) {
+		return this.firstName.setValue(firstName);
 	}
-	if(lastName) {
-		this.lastName.setValue(lastName);
-	}
-	if(emailAddress) {
-		this.emailAddress.setValue(emailAddress);
-	}
-	if(comments) {
-		this.comments.setValue(comments);
-	}
-	this.submitButton.click();
-	this.confirmSuccessfulSubmission();
-}
 
-function confirmSuccessfulSubmission() {
-	var validateSubmissionHeader = browser.waitUntil(function() {
-		return this.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
-	}, 3000)
-	expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
-}
+	setLastName(lastName) {
+		return this.lastName.setValue(lastName);
+	}
 
-function confirmUnsuccessfulSubmission() {
-	var validateSubmissionHeader = browser.waitUntil(function() {
-		return this.unsuccessfulSubmissionHeader.getText() == 'Error: all fields are required'
-	}, 3000)
-	expect(this.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
+	setEmailAddress(emailAddress) {
+		return this.emailAddress.setValue(emailAddress);
+	}
+
+	setComments(comments) {
+		return this.comments.setValue(comments);
+	}
+
+	clickSubmitButton() {
+		return this.submitButton.click();
+	}
+
+	submitAllInfoViaContactUSForm(firstName, lastName, emailAddress, comments) {
+		if(firstName) {
+			this.firstName.setValue(firstName);
+		}
+		if(lastName) {
+			this.lastName.setValue(lastName);
+		}
+		if(emailAddress) {
+			this.emailAddress.setValue(emailAddress);
+		}
+		if(comments) {
+			this.comments.setValue(comments);
+		}
+		this.submitButton.click();
+		this.confirmSuccessfulSubmission();
+	}
+
+	confirmSuccessfulSubmission() {
+		var validateSubmissionHeader = browser.waitUntil(function() {
+			return this.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
+		}, 3000)
+		expect(validateSubmissionHeader, 'Successful Submission Message does not Exist!').to.be.true;
+	}
+
+	confirmUnsuccessfulSubmission() {
+		var validateSubmissionHeader = browser.waitUntil(function() {
+			return this.unsuccessfulSubmissionHeader.getText() == 'Error: all fields are required'
+		}, 3000)
+		expect(this.unsuccessfulSubmissionHeader.getText()).to.include('Error: all fields are required');
+	}
 }
 
 module.exports = new ContactUs_Page();
