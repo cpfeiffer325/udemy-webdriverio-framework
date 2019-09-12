@@ -30,6 +30,23 @@ function clickSubmitButton() {
 	return this.submitButton.click();
 }
 
+function submitAllInfoViaContactUSForm(firstName, lastName, emailAddress, comments) {
+	if(firstName) {
+		this.firstName.setValue(firstName);
+	}
+	if(lastName) {
+		this.lastName.setValue(lastName);
+	}
+	if(emailAddress) {
+		this.emailAddress.setValue(emailAddress);
+	}
+	if(comments) {
+		this.comments.setValue(comments);
+	}
+	this.submitButton.click();
+	this.confirmSuccessfulSubmission();
+}
+
 function confirmSuccessfulSubmission() {
 	var validateSubmissionHeader = browser.waitUntil(function() {
 		return this.successfulSubmissionHeader.getText() == 'Thank You for your Message!'
