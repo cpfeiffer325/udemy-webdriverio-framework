@@ -6,35 +6,30 @@ beforeEach(function() {
 
 describe('Test Contact Us form WebdriverUni', function() {
   it('Should be able to submit a successful submission via contact us form', function(done) {
-  	setFirstName('joe');
-  	setLastName('Blogs');
-  	setEmailAddress('joe_blogs123@outlook.com');
-  	setComments('this is a great day to learn coding');
-  	clickSubmitButton();
-  	confirmSuccessfulSubmission();
-   	});
+	ContactUs_Page.submitAllInfoViaContactUSForm('joe', 'Blogs', 'joe_blogs123@outlook.com', 'this is a great day to learn coding')
+	});
 
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
-  	setFirstName('Mike');
-  	setLastName('Woods');
-  	setEmailAddress('mike_woods@mail.com');
-  	clickSubmitButton();
-  	confirmUnsuccessfulSubmission();
+  	ContactUs_Page.setFirstName('Mike');
+  	ContactUs_Page.setLastName('Woods');
+  	ContactUs_Page.setEmailAddress('mike_woods@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
     });
 
   
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
-  	setFirstName('Sarah');
-  	setEmailAddress('sarah_woods@mail.com');
-  	clickSubmitButton();
-  	confirmUnsuccessfulSubmission();
+  	ContactUs_Page.setFirstName('Sarah');
+  	ContactUs_Page.setEmailAddress('sarah_woods@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
     });
 
   it('Should not be able to submit a successful submission via contact us form as all fields are required', function(done) {
-  	setLastName('Jomes');
-  	setEmailAddress('sarah_Jomes@mail.com');
-  	clickSubmitButton();
-  	confirmUnsuccessfulSubmission();
+  	ContactUs_Page.setLastName('Jomes');
+  	ContactUs_Page.setEmailAddress('sarah_Jomes@mail.com');
+  	ContactUs_Page.clickSubmitButton();
+  	ContactUs_Page.confirmUnsuccessfulSubmission();
     });
 });
