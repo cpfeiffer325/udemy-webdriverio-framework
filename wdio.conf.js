@@ -133,7 +133,7 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: http://webdriver.io/guide/reporters/dot.html
-    reporters: ['dot', 'junit', 'json', 'allure'],
+    reporters: ['dot', 'junit', /*'json',*/ 'allure'],
 
     reporterOptions: {
         junit: {
