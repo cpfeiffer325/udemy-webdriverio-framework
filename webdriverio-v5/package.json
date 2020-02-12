@@ -4,6 +4,7 @@
   "description": "Webdriverio v5 Test Automation Framework",
   "main": "hello-world.js",
   "scripts": {
+    "selenium-server": "./node_modules/.bin/selenium-standalone start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -14,6 +15,10 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "@babel/register": "^7.8.3",
     "@wdio/selenium-standalone-service": "^5.16.10",
     "mocha": "^7.0.1",
     "selenium-standalone": "^6.17.0",
