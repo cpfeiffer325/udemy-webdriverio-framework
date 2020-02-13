@@ -4,7 +4,7 @@
   "description": "Webdriverio v5 Test Automation Framework",
   "main": "hello-world.js",
   "scripts": {
-    "selenium-server": "./node_modules/.bin/selenium-standalone start",
+    "selenium-server": "./node_modules/.bin/selenium-standalone start -- -port 5555",
     "test": "./node_modules/.bin/wdio wdio.conf.js"
   },
   "keywords": [
