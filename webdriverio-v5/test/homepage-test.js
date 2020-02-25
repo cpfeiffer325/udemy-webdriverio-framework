@@ -9,3 +9,4 @@ describe('Teste WEbdriverUni homepage', () => {
 })
 
 // comment out path: '/' in wdio config if there is an error on running server
+// localhost:4444/wd/hub/static/resource/hub.html
